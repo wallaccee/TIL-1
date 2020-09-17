@@ -139,6 +139,8 @@ origin  https://github.com/edutak/git-test.git (fetch)
 origin  https://github.com/edutak/git-test.git (push)
 ```
 
+
+
 ### 3. push
 
 ```bash
@@ -154,20 +156,6 @@ To https://github.com/edutak/git-test.git
 ```
 
 * origin 원격저장소의 master 브랜치로 push
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
