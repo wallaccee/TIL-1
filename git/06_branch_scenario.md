@@ -167,37 +167,114 @@
 
 1. feature/board branch 생성 및 이동
 
+   ```bash
+   $ git checkout -b feature/board
+   ```
+
    
 
 2. 작업 완료 후 commit
 
+   ```bash
+   $ touch board.html
+   # README.md 파일을 열어서 자유롭게 수정
+   $ git status
+   On branch feature/board
+   Changes not staged for commit:
+     (use "git add <file>..." to update what will be committed)
+     (use "git restore <file>..." to discard changes in working directory)
+     # 1) 동일파일 수정
+           modified:   README.md
    
+   Untracked files:
+     (use "git add <file>..." to include in what will be committed)
+     # 2) 신규 작업
+           board.html
+   
+   no changes added to commit (use "git add" and/or "git commit -a")
+   $ git add .
+   $ git commit -m 'board & README'
+   $ git log --oneline
+   dc27342 (HEAD -> feature/board) board & README
+   e84912e (master) Merge branch 'feature/signout' into master
+   801facc Hotfix
+   f700edb Complete signout
+   a210f36 Complete test
+   3888136 Complete Test2
+   cf28034 Init
+   ```
 
 
 3. master 이동
 
-   
+   ```bash
+   $ git checkout master
+   ```
 
 
 4. *master에 추가 commit 이 발생시키기!!*
 
    * **동일 파일을 수정 혹은 생성하세요!**
-   
 
-   
+   ```bash
+   # README를 수정하고
+   $ git add .
+   $ git commit -m 'Update README'
+   $ git log --oneline
+   e9af78e (HEAD -> master) Update README
+   e84912e Merge branch 'feature/signout' into master
+   801facc Hotfix
+   f700edb Complete signout
+   a210f36 Complete test
+   3888136 Complete Test2
+   cf28034 Init
+   ```
+
 5. master에 병합
 
-   
+   ```bash
+   $ git merge feature/board
+   # 자동 병합을 하고 있는데..
+   Auto-merging README.md
+   # 충돌!
+   CONFLICT (content): Merge conflict in README.md
+   Automatic merge failed; 
+   # 충돌을 고치고, 결과를 커밋하세요.
+   fix conflicts and then commit the result.
+   (master|MERGING) $
+   ```
 
 
 6. 결과 -> *merge conflict발생*
 
-   
+   ```bash
+   $ git status
+   On branch master
+   # 병합되지 않은 파일들이 있습니다.
+   You have unmerged paths.
+   # 충돌을 고치고, commit 하세요.
+     (fix conflicts and run "git commit")
+   # 병합을 취소하려면 
+     (use "git merge --abort" to abort the merge)
+   # staging area 
+   # -> 충돌나지 않은 파일
+   Changes to be committed:
+           new file:   board.html
+   # 유사 Working directory...
+   # -> 충돌난 파일
+   Unmerged paths:
+     # 해결하고 add하세요!!!
+     (use "git add <file>..." to mark resolution)
+           both modified:   README.md
+   ```
 
 
 7. 충돌 확인 및 해결
 
-   
+   ```bash
+   # 충돌 해결하고
+   $ git add .
+   ```
 
 
 8. merge commit 진행
@@ -216,9 +293,27 @@
    
 9. 그래프 확인하기
 
-    
+    ```bash
+   $ git log --oneline --graph
+   *   63580b1 (HEAD -> master) Merge branch 'feature/board' into master
+   |\
+   | * dc27342 (feature/board) board & README
+   * | e9af78e Update README
+   |/
+   *   e84912e Merge branch 'feature/signout' into master
+   |\
+   | * f700edb Complete signout
+   * | 801facc Hotfix
+   |/
+   * a210f36 Complete test
+   * 3888136 Complete Test2
+   * cf28034 Init
+    ```
 
 
 10. branch 삭제
 
-    
+    ```bash
+    $ git branch -d feature/board
+    Deleted branch feature/board (was dc27342).
+    ```
